@@ -2,12 +2,16 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-image: url('../images/landing.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #75e90a
 }
 
 header {
-    background-color: #1d2125;
+    background-color: rgba(100, 100, 100, 0.6);
     color: #fff;
+    height: 80px;
     text-align: center;
     padding: 20px 0;
 }
@@ -22,8 +26,9 @@ header p {
 }
 
 section {
-    padding: 40px;
+    padding: 20px;
     text-align: center;
+    background-color: rgba(100, 100, 100, 0.7);
 }
 
 section h2 {
@@ -38,7 +43,7 @@ section p {
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #172b04;
+    background-color: #3f7c06;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -46,16 +51,17 @@ section p {
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    opacity: 60%;
 }
 
 footer {
-    background-color: #1d2125;
+    background-color: rgba(100, 100, 100, 0.5);
     color: #fff;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
+    position: absolute;
     bottom: 0;
+    height: 100px;
     width: 100%;
 }
 
