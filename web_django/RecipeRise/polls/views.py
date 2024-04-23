@@ -5,6 +5,9 @@ from django.shortcuts import render
 def index(request):
     return render(request, "polls/index.html")
 
+def landingPage(request):
+    return render(request, 'polls/landing.html')
+
 
 
 def detail(request, question_id):
