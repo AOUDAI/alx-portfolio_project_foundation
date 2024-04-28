@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecipeRise - Browse Recipes</title>
+    <link rel="stylesheet" href="{% static 'styles/one_page.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>RecipeRise</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Recipes</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <form action="#" method="get">
+                <input type="text" name="search" placeholder="Search for recipes...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Browse Recipes</h2>
+            <div class="filters">
+                <label for="cuisine">Cuisine:</label>
+                <select name="cuisine" id="cuisine">
+                    <option value="italian">Italian</option>
+                    <option value="mexican">Mexican</option>
+                    <option value="indian">Indian</option>
+                    <!-- Add more options -->
+                </select>
+                <label for="diet">Diet:</label>
+                <select name="diet" id="diet">
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="gluten-free">Gluten-Free</option>
+                    <!-- Add more options -->
+                </select>
+            </div>
+            <div class="recipes">
+                {% for recipe in recipes %}
+                <div class="recipe-card">
+                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                    <h3>{{ recipe.title }}</h3>
+                    <p>{{ recipe.summary }}</p>
+                    <a href="{{ recipe.sourceUrl }}">View Recipe</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 RecipeRise. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
