@@ -1,0 +1,24 @@
+/* Styles for the sidebar */
+.sidebar {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    width: 200px;
+}
+
+/* Styles for the icons */
+.sidebar a {
+    display: block;
+    margin-bottom: 10px;
+    color: #fff; /* Default icon color */
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    color: #ff0; /* Change icon color on hover */
+}
+
+.sidebar i {
+    margin-right: 10px; /* Add space between icon and text */
+    font-size: 40px; /* Set the icon size */
+}

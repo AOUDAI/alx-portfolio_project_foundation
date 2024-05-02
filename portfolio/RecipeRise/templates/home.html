@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecipeRise - Browse Recipes</title>
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <body>
+        <div class="content">
+            <div class="nav-bar">
+                <ul>
+                    <li><a href="#"><i class="material-icons">home</i></a></li>
+                    <li><a href="#"><i class="material-icons">restaurant_menu</i></a></li>
+                    <li><a href="#"><i class="material-icons">apps</i></a></li>
+                    <li><a href="#"><i class="material-icons">delete_forever</i></a></li>
+                    <li><a href="#"><i class="material-icons">account_circle</i></a></li>
+                    <li><a href="#"><i class="material-icons">search</i></a></li>
+                    <li><a href="#"><i class="material-icons">info</i></a></li>
+                </ul>
+            </div>
+            <div class="main">
+                <div class="recipes">
+                    {% for recipe in recipes %}
+                    <div class="recipe-card">
+                        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                        <h3>{{ recipe.title }}</h3>
+                        <br>
+                        <!-- <p>{{ recipe.summary }}</p> -->
+                        <a href="{{ recipe.sourceUrl }}">View Recipe</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </body>
