@@ -1,11 +1,11 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('../images/index_3.jpg'); /* Specify the path to your background image */
+    background: linear-gradient(135deg, #87CEEB, #92dbf3, #004c97);
     background-size: cover;
     background-position: center;
-    height: 100vh; /* Set the height to 100 viewport height */
-    margin: 0; /* Remove default body margin */
-    padding: 0; /* Remove default body padding */
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 header {

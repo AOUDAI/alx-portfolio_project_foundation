@@ -9,16 +9,15 @@
   <link rel="stylesheet" href="{% static 'styles/index.css' %}">
 </head>
 <body>
-  <div class="sliding-bg-container">
-    <div class="sliding-bg">
-	    <div class="test">
-        <h2>Welcome to RecipeRise – your culinary adventure awaits! 🍽️✨</h2>
-        <p>
-          Discover an array of mouthwatering recipes curated by passionate food enthusiasts worldwide. From quick weekday meals to gourmet delights, our platform offers something for every palate and occasion.
-          
-          Join our vibrant community of food lovers to swap tips, share recipes, and embark on flavorful journeys together. Let's explore the world of cooking, one dish at a time!
-        </p>
-	    </div>
+  <div class="mask">
+    <div class="container">
+      <h2>Welcome to <span class="text-gradient">RecipeRise</span> – your culinary adventure awaits!</h2>
+    <p>
+      Explore a variety of delicious recipes curated by food enthusiasts worldwide. From quick weekday meals to gourmet delights, our platform has something for every palate. Join our community to swap tips, share recipes, and embark on flavorful journeys together.
+    </p>
+    <div class="login-options">
+      <a href="{% url 'sign_in' %}" class="login-button">Log In</a>
+      <a href="{% url 'home' %}" class="login-button">Continue as Guest</a>
     </div>
   </div>
 </body>

@@ -5,7 +5,7 @@ body {
     height: 100vh; 
     font-family: Arial, sans-serif;
     /* background: linear-gradient(135deg, #ff6b6b, #556270, #ff6b6b, #556270, #ff6b6b); */
-    background: linear-gradient(135deg, #e4f391, #94f55c, #16c01e, #04f304, #f6fa1e);
+    background: linear-gradient(135deg, #87CEEB, #92dbf3, #004c97);
     background-position: center;
     background-size: cover;
 }
