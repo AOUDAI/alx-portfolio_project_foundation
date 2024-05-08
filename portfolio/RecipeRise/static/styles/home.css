@@ -1,152 +1,121 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    margin: 0;
-    padding: 0;
-    height: 100vh; 
     font-family: Arial, sans-serif;
-    /* background: linear-gradient(135deg, #ff6b6b, #556270, #ff6b6b, #556270, #ff6b6b); */
-    background: linear-gradient(135deg, #87CEEB, #92dbf3, #004c97);
-    background-position: center;
-    background-size: cover;
 }
 
-.cover {
-    margin: 5px;
-    border-radius: 10px;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.content {
-    margin: 0;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 70px auto;
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
 }
 
-.nav-bar {
-    background-color: rgba(255, 255, 255, 0.6);
-    padding: 10px;
-    margin: 5px 0 5px 5px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-right: rgba(20, 20, 20, 0.5) 6px solid;
-    box-shadow: -1px 1px 2px #333;
-}
-
-.nav-bar ul {
+header .container {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    list-style: none;
-    padding: 0;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.nav-bar li {
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline;
     margin-right: 20px;
 }
 
-.nav-bar a {
+header nav ul li:last-child {
+    margin-right: 0;
+}
+
+header nav a {
     text-decoration: none;
-    color: #333;
+    color: #fff;
+    font-size: 1.125rem;
 }
 
-.nav-bar i {
-    font-size: 40px;
-    color: rgb(0, 125, 125);
+.hero {
+    background-image: url('../images/image_1.jpg');
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
 }
 
-.main {
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.4);
-    margin: 5px 5px 5px 0;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    box-shadow: 1px 1px 2px #333;
-
-    overflow: auto;
-    display: flex;
-}
-
-.recipes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 5px;
-}
-
-.recipe-card {
-    position: relative;
-    max-width: 200px;
-    max-height: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: rgba(150, 150, 150, 0.7);
-    margin-bottom: 10px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.recipe-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px 10px 0 0;
-}
-
-.recipe-card h3 {
-    margin: 0;
-    padding-bottom: 25px;
-    font-size: 16px;
-}
-
-.recipe-card p {
-    padding: 0 10px 10px 10px;
-    color: #666;
-    box-shadow: 0 -2px 10px #333;
-}
-
-.recipe-card a {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+.btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #333;
+    background-color: #f00;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
 }
 
-.recipe-card a:hover {
-    opacity: 70%;
+.btn:hover {
+    opacity: 80%;
 }
 
-/* Footer Styles */
-.footer {
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 10px;
-    box-shadow: 0 -2px 4px #333;
+.featured-recipes {
+    padding: 50px auto;
 }
 
+.featured-recipes h2 {
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid #CCCCCC;
+}
 
-/* Width of the scrollbar */
-::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  /* Track (background) of the scrollbar */
-  ::-webkit-scrollbar-track {
-    color: rgba(255, 255, 255, 0.4);
-    margin: 10px;
-  }
-  
-  /* Customize scrollbar thumb */
-  .main::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.5); /* Change thumb color */
-    margin: 10px;
-    border-radius: 20px; /* Adjust border radius */
-  }
-  
-  /* Customize scrollbar thumb on hover */
-  .main::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, 0.7); /* Change thumb color on hover */
-  }
+.recipe-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+}
+
+.recipe-box {
+    padding: 10px 0 20px 0;
+    border-bottom: 2px solid #CCCCCC;
+}
+
+.recipe-box h3 {
+    margin: 10px 0 20px 0;
+}
+
+.recipe-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.recipe-card {
+    background-color: #f0f0f0;
+    width: 30%;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}

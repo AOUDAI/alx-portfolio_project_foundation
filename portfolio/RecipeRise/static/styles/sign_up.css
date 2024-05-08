@@ -1,11 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('../images/index_3.jpg');
-    background-size: cover;
-    background-position: center;
     margin: 0;
     padding: 0;
     height: 100vh;
+    background: linear-gradient(135deg, #87CEEB, #92dbf3, #004c97);
 }
 
 header {
@@ -14,12 +12,13 @@ header {
 }
 
 .sign-up-form {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.4);
     padding: 10px;
     border-radius: 10px;
     text-align: center;
-    max-width: 400px; /* Set maximum width for the form */
-    margin: 30px auto; /* Center the form horizontally */
+    max-width: 400px;
+    margin: 10px auto;
+    box-shadow: -1px 1px 2px 2px rgba(40, 40, 40, 0.3);
 }
 
 form {
@@ -30,25 +29,25 @@ form {
 
 label {
     margin-bottom: 10px;
-    text-align: left; /* Align labels to the left */
+    text-align: left;
 }
 
 input {
-    width: 100%;
-    max-width: 300px; /* Limit the input width */
+    width: 70%;
+    background-color: rgba(230, 230, 230, 0.5);
     padding: 10px;
-    margin-bottom: 10px;
+    margin: 5px 0;
+    border: 1px solid #aaa;
     border-radius: 5px;
-    border: 1px solid #ccc;
 }
 
 button {
     width: 100%;
-    max-width: 300px; /* Limit the button width */
+    max-width: 300px;
     padding: 10px 20px;
     margin-bottom: 10px;
     margin-top: 10px;
-    background-color: #4CAF50;
+    background-color: #181870;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -57,5 +56,5 @@ button {
 }
 
 button:hover {
-    background-color: #1f6e25;
+    opacity: 70%;
 }

@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecipeRise - Recipes</title>
+  <link rel="stylesheet" href="{% static 'styles/recipes.css' %}">
+</head>
+<body>
+    <header>
+      <div class="container">
+        <h1>RecipeRise</h1>
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Recipes</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section class="search-filter">
+        <div class="container">
+          <h2>Find Your Perfect Recipe</h2>
+          <div class="search-container">
+            <input type="text" placeholder="Search for recipes...">
+            <button class="search-btn">Search</button>
+          </div>
+          <div class="filter-container">
+            <h3>Filter By:</h3>
+            <div class="filter-options">
+              <select name="category" class="category-select">
+                <option value="">All Categories</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+                <option value="dessert">Dessert</option>
+              </select>
+              <select name="cuisine" class="cuisine-select">
+                <option value="">All Cuisines</option>
+                <option value="italian">Italian</option>
+                <option value="mexican">Mexican</option>
+                <option value="indian">Indian</option>
+                <option value="chinese">Chinese</option>
+              </select>
+              <input type="number" min="1" max="60" placeholder="Max time (minutes)" class="time-input">
+            </div>
+            <button class="filter-btn">Apply Filters</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="featured-recipes">
+        <div class="container">
+          <h2>Featured Recipes</h2>
+          <div class="recipe-grid">
+            <div class="recipe-box">
+                <h3>Quick & Easy Recipes</h3>
+                <div class="recipe-items">
+                    {% for recipe in quick %}
+                    <div class="recipe-card">
+                        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                        <h3>{{ recipe.title }}</h3>
+                        <p>{{ recipe.description }}</p>
+                        <a href="#" class="btn">View Recipe</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="recipe-box">
+                <h3>Healthy Recipes</h3>
+                <div class="recipe-items">
+                    {% for recipe in unknown %}
+                    <div class="recipe-card">
+                        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                        <h3>{{ recipe.title }}</h3>
+                        <p>{{ recipe.description }}</p>
+                        <a href="#" class="btn">View Recipe</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="recipe-box">
+                <h3>Vegetarian Recipes</h3>
+                <div class="recipe-items">
+                    {% for recipe in vegetarian %}
+                    <div class="recipe-card">
+                        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                        <h3>{{ recipe.title }}</h3>
+                        <p>{{ recipe.description }}</p>
+                        <a href="#" class="btn">View Recipe</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+      </section>
+    
+  
+    <footer>
+        <footer>
+            <div class="container">
+              <p>&copy; 2024 RecipeRise. All rights reserved.</p>
+            </div>
+          </footer>
+    </footer>
+  
+    <script src="script.js"></script>
+  </body>
+  </html>

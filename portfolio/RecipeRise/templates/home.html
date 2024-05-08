@@ -1,39 +1,88 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RecipeRise - Browse Recipes</title>
-    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecipeRise</title>
+  <link rel="stylesheet" href="{% static 'styles/home.css' %}">
 </head>
 <body>
+  <header>
+    <div class="container">
+      <h1>RecipeRise</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="{% url 'recipes' %}">Recipes</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <body>
-        <div class="content">
-            <div class="nav-bar">
-                <ul>
-                    <li><a href="#"><i class="material-icons">home</i></a></li>
-                    <li><a href="#"><i class="material-icons">restaurant_menu</i></a></li>
-                    <li><a href="#"><i class="material-icons">account_circle</i></a></li>
-                    <li><a href="#"><i class="material-icons">search</i></a></li>
-                    <li><a href="#"><i class="material-icons">info</i></a></li>
-                </ul>
-            </div>
-            <div class="main">
-                <div class="recipes">
-                    {% for recipe in recipes %}
-                    <div class="recipe-card">
-                        <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-                        <h3>{{ recipe.title }}</h3>
-                        <br>
-                        <!-- <p>{{ recipe.summary }}</p> -->
-                        <a href="{{ recipe.sourceUrl }}">View Recipe</a>
-                    </div>
-                    {% endfor %}
+  <section class="hero">
+    <div class="container">
+      <h2>Welcome to RecipeRise</h2>
+      <p>Explore mouthwatering recipes from around the world</p>
+      <a href="#" class="btn">Explore Recipes</a>
+    </div>
+  </section>
+
+  <section class="featured-recipes">
+    <div class="container">
+      <h2>Featured Recipes</h2>
+      <div class="recipe-grid">
+        <div class="recipe-box">
+            <h3>Quick & Easy Recipes</h3>
+            <div class="recipe-items">
+                {% for recipe in quick %}
+                <div class="recipe-card">
+                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                    <h3>{{ recipe.title }}</h3>
+                    <p>{{ recipe.description }}</p>
+                    <a href="#" class="btn">View Recipe</a>
                 </div>
+                {% endfor %}
             </div>
         </div>
-    </body>
+        <div class="recipe-box">
+            <h3>Healthy Recipes</h3>
+            <div class="recipe-items">
+                {% for recipe in unknown %}
+                <div class="recipe-card">
+                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                    <h3>{{ recipe.title }}</h3>
+                    <p>{{ recipe.description }}</p>
+                    <a href="#" class="btn">View Recipe</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="recipe-box">
+            <h3>Vegetarian Recipes</h3>
+            <div class="recipe-items">
+                {% for recipe in vegetarian %}
+                <div class="recipe-card">
+                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                    <h3>{{ recipe.title }}</h3>
+                    <p>{{ recipe.description }}</p>
+                    <a href="#" class="btn">View Recipe</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 RecipeRise. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
