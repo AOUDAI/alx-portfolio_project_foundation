@@ -40,10 +40,13 @@
             <div class="recipe-items">
                 {% for recipe in quick %}
                 <div class="recipe-card">
+                  <div class="recipe-img">
                     <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-                    <h3>{{ recipe.title }}</h3>
-                    <p>{{ recipe.description }}</p>
                     <a href="#" class="btn">View Recipe</a>
+                  </div>
+                  <div class="recipe-title">
+                    <h3>{{ recipe.title }}</h3>
+                  </div>
                 </div>
                 {% endfor %}
             </div>
@@ -51,27 +54,33 @@
         <div class="recipe-box">
             <h3>Healthy Recipes</h3>
             <div class="recipe-items">
-                {% for recipe in unknown %}
-                <div class="recipe-card">
-                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-                    <h3>{{ recipe.title }}</h3>
-                    <p>{{ recipe.description }}</p>
-                    <a href="#" class="btn">View Recipe</a>
+              {% for recipe in quick %}
+              <div class="recipe-card">
+                <div class="recipe-img">
+                  <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                  <a href="#" class="btn">View Recipe</a>
                 </div>
-                {% endfor %}
+                <div class="recipe-title">
+                  <h3>{{ recipe.title }}</h3>
+                </div>
+              </div>
+              {% endfor %}
             </div>
         </div>
         <div class="recipe-box">
             <h3>Vegetarian Recipes</h3>
             <div class="recipe-items">
-                {% for recipe in vegetarian %}
-                <div class="recipe-card">
-                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-                    <h3>{{ recipe.title }}</h3>
-                    <p>{{ recipe.description }}</p>
-                    <a href="#" class="btn">View Recipe</a>
+              {% for recipe in quick %}
+              <div class="recipe-card">
+                <div class="recipe-img">
+                  <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
+                  <a href="#" class="btn">View Recipe</a>
                 </div>
-                {% endfor %}
+                <div class="recipe-title">
+                  <h3>{{ recipe.title }}</h3>
+                </div>
+              </div>
+              {% endfor %}
             </div>
         </div>
     </div>
@@ -83,6 +92,5 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>

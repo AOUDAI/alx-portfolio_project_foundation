@@ -19,7 +19,9 @@
             <form action="{% url 'sign_up' %}" method="POST">
                 {% csrf_token %}
                 {{ form }}
-                <button type="submit">Sign Up</button>
+                <div>
+                    <button type="submit">Sign Up</button>
+                </div>
             </form>
         </section>
 </body>

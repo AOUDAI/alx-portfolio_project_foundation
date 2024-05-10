@@ -20,7 +20,7 @@ header {
     padding: 10px;
     border-radius: 5px;
     background-color: #181870;
-    color: #FFF; /* Slightly darker text color */
+    color: #FFF;
     text-decoration: none;
     font-size: 14px;
 }
@@ -44,20 +44,17 @@ header {
     align-items: center;
 }
 
+.auth-form div {
+    width: 100%;
+}
+
 input {
-    width: 70%;
+    width: 90%;
     background-color: rgba(230, 230, 230, 0.5);
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #aaa;
     border-radius: 5px;
-}
-
-.options {
-    width: 70%;
-    padding: 0 10px;
-    align-items: center;
-    display: flex;
 }
 
 .submit-button {
@@ -76,7 +73,7 @@ input {
 
 .forgot-password {
     padding-left: 5px;
-    color: #444; /* Slightly darker text color */
+    color: #444;
     text-decoration: none;
     font-size: 14px;
 }

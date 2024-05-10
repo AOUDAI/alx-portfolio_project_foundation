@@ -102,16 +102,45 @@ header nav a {
 .recipe-card {
     background-color: #f0f0f0;
     width: 30%;
-    padding: 20px;
+    padding: 20px 10px;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.recipe-card img {
+.recipe-img {
+    position: relative;
     width: 100%;
-    height: auto;
+    height: 80%;
+}
+.recipe-img img {
+    height: 100%;
+    width: 100%;
     border-radius: 5px;
 }
+
+.recipe-img a {
+    position: absolute;
+    opacity: 80%;
+    left: 0;
+    bottom: 0;
+}
+
+.recipe-img a:hover {
+    opacity: 100%;
+}
+
+.recipe-title {
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.recipe-card h3 {
+    font-size: medium;
+    text-align: center;
+}
+
 
 footer {
     background-color: #333;
