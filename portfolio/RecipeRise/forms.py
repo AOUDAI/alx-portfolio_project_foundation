@@ -7,15 +7,15 @@ from django.core.exceptions import ValidationError
 class RegistrationForm(forms.Form):
     username = forms.CharField(
         label='Username',
-        widget=forms.TextInput(attrs={'class': 'username-field'})
+        widget=forms.TextInput(attrs={'class': 'my-field'})
         )
     password1 = forms.CharField(
         label='Password',
-        widget=forms.PasswordInput(attrs={'class': 'password1-field'})
+        widget=forms.PasswordInput(attrs={'class': 'my-field'})
         )
     password2 = forms.CharField(
         label='Confirm Password',
-        widget=forms.PasswordInput(attrs={'class': 'password2-field'})
+        widget=forms.PasswordInput(attrs={'class': 'my-field'})
         )
     
     def clean(self):
