@@ -19,7 +19,6 @@ def index(request):
 def sign_up(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
-        print(form.is_valid())
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
