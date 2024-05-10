@@ -140,10 +140,29 @@ header nav a {
     text-align: center;
 }
 
-
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 20px 0;
+}
+
+@media screen and (max-width: 600px) {
+    .recipe-card {
+        background-color: #f0f0f0;
+        width: 90%;
+        padding: 20px 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1200px) {
+    .recipe-card {
+        background-color: #f0f0f0;
+        width: 45%;
+        padding: 20px 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
 }
