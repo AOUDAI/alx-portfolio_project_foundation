@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RecipeRise</title>
   <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
   <header>
@@ -15,7 +16,7 @@
         <ul>
           <li><a href="#">Home</a></li>
           <li><a href="{% url 'recipes' %}">Recipes</a></li>
-          <li><a href="#">Profile</a></li>
+          <li><a href="{% url 'profile' %}">Profile</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
@@ -38,53 +39,47 @@
         <div class="recipe-box">
             <h3>Quick & Easy Recipes</h3>
             <div class="recipe-items">
-                {% for recipe in quick %}
-                <div class="recipe-card">
-                  <div class="recipe-img">
-                    <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-                    <a href="#" class="btn">View Recipe</a>
-                  </div>
-                  <div class="recipe-title">
-                    <h3>{{ recipe.title }}</h3>
-                  </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="recipe-box">
-            <h3>Healthy Recipes</h3>
-            <div class="recipe-items">
-              {% for recipe in quick %}
-              <div class="recipe-card">
-                <div class="recipe-img">
-                  <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-                  <a href="#" class="btn">View Recipe</a>
-                </div>
-                <div class="recipe-title">
-                  <h3>{{ recipe.title }}</h3>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-        </div>
-        <div class="recipe-box">
-            <h3>Vegetarian Recipes</h3>
-            <div class="recipe-items">
-              {% for recipe in quick %}
-              <div class="recipe-card">
-                <div class="recipe-img">
-                  <img src="{{ recipe.image }}" alt="{{ recipe.title }}">
-                  <a href="#" class="btn">View Recipe</a>
-                </div>
-                <div class="recipe-title">
-                  <h3>{{ recipe.title }}</h3>
-                </div>
-              </div>
-              {% endfor %}
             </div>
         </div>
     </div>
   </section>
+
+  <div class="recipe-content-board">
+    <div class="close-btn">Close</div>
+    <!-- Recipe Details Section -->
+    <section class="recipe-details">
+      <!-- Recipe Image, Summary, and other details -->
+    </section>
+    <!-- Recipe Ingredients Section -->
+    <section class="recipe-ingredients">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, porro.</p>
+      <!-- List of Ingredients -->
+    </section>
+    <!-- Recipe Instructions Section -->
+    <section class="recipe-instructions">
+      <!-- Step-by-step Instructions -->
+    </section>
+    <!-- Nutrition Information Section -->
+    <section class="nutrition-info">
+      <!-- Nutrition Facts -->
+    </section>
+    <!-- Comments Section -->
+    <section class="comments">
+      <h3>Comments</h3>
+      <form class="comment-form">
+        <div class="form-group">
+        </div>
+        <div class="form-group">
+          <label for="comment">Your Comment</label>
+          <textarea id="comment" name="comment" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+      <!-- Display existing comments here -->
+    </section>
+  </div>  
+
+  <div class="overlay"></div>
 
   <footer>
     <div class="container">
@@ -92,5 +87,6 @@
     </div>
   </footer>
 
+  <script src="{% static 'scripts/home.js' %}"></script>
 </body>
 </html>

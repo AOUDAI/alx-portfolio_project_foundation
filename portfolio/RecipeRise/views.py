@@ -75,3 +75,7 @@ def recipes(request):
                                          'unknown':request.session["unknown"],
                                          'vegetarian': request.session["vegetarian"]})
 
+def profile(request):
+
+    return render(request, 'profile.html')
+
