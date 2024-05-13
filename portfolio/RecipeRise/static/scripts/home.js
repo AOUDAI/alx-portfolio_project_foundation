@@ -1,7 +1,8 @@
 $(document).ready(function() {
+
   if (sessionStorage.getItem('recipes') === null) {
     $.ajax({
-      url: "https://api.spoonacular.com/recipes/complexSearch?cuisine=italian&number=10&apiKey=5aadec4c06d548298be16668bc8a2cc1",
+      url: "https://api.spoonacular.com/recipes/complexSearch?cuisine=italian&sort=random&addRecipeNutrition=true&number=6&apiKey=5aadec4c06d548298be16668bc8a2cc1",
       method: 'GET',
       dataType: 'json',
       success: function (response) {
@@ -13,9 +14,39 @@ $(document).ready(function() {
       }
     });
   }
+
+  if (sessionStorage.getItem('desserts') === null) {
+    $.ajax({
+      url: "https://api.spoonacular.com/recipes/complexSearch?type=dessert&sort=random&addRecipeNutrition=true&number=6&apiKey=5aadec4c06d548298be16668bc8a2cc1",
+      method: 'GET',
+      dataType: 'json',
+      success: function (response) {
+        sessionStorage.setItem('desserts', JSON.stringify(response.results));
+      },
+      error: function (xhr, status, error) {
+        console.log('Error:', status, error);
+        console.log(error);
+      }
+    });
+  }
+
+  if (sessionStorage.getItem('drinks') === null) {
+    $.ajax({
+      url: "https://api.spoonacular.com/recipes/complexSearch?type=drink&sort=random&addRecipeNutrition=true&number=6&apiKey=5aadec4c06d548298be16668bc8a2cc1",
+      method: 'GET',
+      dataType: 'json',
+      success: function (response) {
+        sessionStorage.setItem('drinks', JSON.stringify(response.results));
+      },
+      error: function (xhr, status, error) {
+        console.log('Error:', status, error);
+        console.log(error);
+      }
+    });
+  }
+
   for (recipe of JSON.parse(sessionStorage.getItem('recipes'))) {
-    console.log(recipe);
-    $('.recipe-items').append(
+    $('#class1').append(
       `<div class="recipe-card">
         <div class="recipe-img">
           <img src="${recipe.image}" alt="${recipe.title}">
@@ -28,38 +59,92 @@ $(document).ready(function() {
     );
   };
 
-  // Event listener for clicking "View Recipe" button
+  for (recipe of JSON.parse(sessionStorage.getItem('desserts'))) {
+    $('#class2').append(
+      `<div class="recipe-card">
+        <div class="recipe-img">
+          <img src="${recipe.image}" alt="${recipe.title}">
+          <a href="#" id="${recipe.id}" class="btn">View Recipe</a>
+        </div>
+        <div class="recipe-title">
+          <h3>${recipe.title}</h3>
+        </div>
+      </div>`
+    );
+  };
+
+  for (recipe of JSON.parse(sessionStorage.getItem('drinks'))) {
+    $('#class3').append(
+      `<div class="recipe-card">
+        <div class="recipe-img">
+          <img src="${recipe.image}" alt="${recipe.title}">
+          <a href="#" id="${recipe.id}" class="btn">View Recipe</a>
+        </div>
+        <div class="recipe-title">
+          <h3>${recipe.title}</h3>
+        </div>
+      </div>`
+    );
+  };
+
   $('.recipe-card .btn').click(function(e) {
     e.preventDefault();
-    // Show the overlay
     $('.overlay').addClass('active');
-    // Show the recipe content board with medium speed animation
     $('.recipe-content-board').slideDown('medium');
-    // Add 'overlay-active' class to body to disable scrolling
+    $('.recipe-content-board').css('display', "flex");
     $('body').addClass('overlay-active');
-    const id = $(this).prop('id');
-    const recipe = JSON.parse(sessionStorage.getItem('recipes')).find(function (obj) {
-      return obj.id === id;
+
+    const myId = $(this).prop('id');
+    let myRecipe = JSON.parse(sessionStorage.getItem('recipes')).find(function (obj) {
+      return obj.id == myId;
     });
+
+    if (myRecipe === undefined) {
+      myRecipe = JSON.parse(sessionStorage.getItem('desserts')).find(function (obj) {
+        return obj.id == myId;
+      });
+    }
+
+    if (myRecipe === undefined) {
+      myRecipe = JSON.parse(sessionStorage.getItem('drinks')).find(function (obj) {
+        return obj.id == myId;
+      });
+    }
+
+    console.log(myRecipe);
+  
+    const ingredients = myRecipe.nutrition.ingredients.map(function (obj) {
+      return obj.name + " " + obj.amount + " " + obj.unit;
+    }).join("<br>");
+
     $('.recipe-details').append(
-      `<p>${recipe.title}</p>
-      <img src="${recipe.image}">`
+      `<img src="${myRecipe.image}">
+      <h2>${myRecipe.title}</h2>
+      <h5>serves:</h5>
+      <h4>prep time:</h4>
+      <h4>cook time:</h4>
+      <h4>total time:</h4>`
     );
+
+    $('.recipe-ingredients').append(
+      `<h3>Ingredients:</h3>
+      <p>${ingredients}</p>`
+    )
+
+    $('.recipe-instructions').append(
+      `<h3>Instructions:</h3>
+      <p>${ingredients}</p>`
+    )
   });
 
-  // Event listener for clicking "Close" button
   $('.close-btn').click(function() {
-    // Hide the overlay
     $('.overlay').removeClass('active');
-    // Hide the recipe content board with medium speed animation
     $('.recipe-content-board').slideUp('medium');
-    // Remove 'overlay-active' class from body to enable scrolling
+    $('.recipe-details').empty();
     $('body').removeClass('overlay-active');
   });
 
-  // Event listener for submitting comment form
   $('.comment-form').submit(function(e) {
     e.preventDefault();
-    // Add new comment dynamically and update the comments section
   });
 });

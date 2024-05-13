@@ -147,21 +147,20 @@ header nav a {
     text-align: center;
 }
 
-/* Recipe Content Board Styles */
 .recipe-content-board {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 97vw;
-    height: 97vh;
+    width: 80vw;
+    height: 95vh;
     transform: translate(-50%, -50%);
     z-index: 1000;
     background-color: #f0f0f0;
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: none; /* Initially hidden */
+    padding: 0;
+    display: none;
     overflow: auto;
+    gap: 5%;
     box-shadow: 2px 2px 4px rgba(51, 51, 51, 0.8), -2px -2px 4px rgba(0, 0, 0, 0.8);
   }
   
@@ -170,49 +169,86 @@ header nav a {
     top: 10px;
     right: 10px;
     cursor: pointer;
-    color: #999;
+    color: #f00;
   }
 
-.comment-form {
-    margin-top: 20px;
+  .recipe-details {    
+    width: 35%;
+    height: 100%;
+    background-color: #F27020;
+    border-radius: 5px 0 0 5px;
+    padding: 10px auto;
   }
-  
-  .comment-form .form-group {
+
+  .recipe-details img {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .recipe-details h2 {
+    margin-top: 20px;
+    color: #fff;
+    text-align: center;
+  }
+
+  .recipe-details h5 {
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    color: #e0e0e0;
+    margin: 30px auto 0;
+    font-size: large;
+    font-weight: bold;
+    border-top: #888 2px dashed;
+    border-bottom: #888 2px dashed;
+  }
+
+  .recipe-details h4 {
+    margin-top: 20px;
+    text-align: center;
+    color: antiquewhite;
+  }
+
+  .recipe-details h3 {
+    margin-top: 20px;
+    text-align: center;
+    color: #f5f3f3;
+  }
+
+  .right-part {
+    width: 55%;
+  }
+
+  .recipe-ingredients {
+    margin-top: 60px;
+    color: #333;
+    border-bottom: #555 3px dotted;
+    width: 100%;
+  }
+
+  .recipe-ingredients h3 {
     margin-bottom: 20px;
   }
-  
-  .comment-form label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
+
+  .recipe-ingredients p {
+    padding-left: 30px;
+    margin-bottom: 30px;
+    font-size: medium;
   }
-  
-  .comment-form input[type="text"],
-  .comment-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+
+  .recipe-instructions{
+    margin-top: 30px;
+    color: #333;
   }
-  
-  .comment-form textarea {
-    resize: vertical;
+
+  .recipe-instructions h3 {
+    margin-bottom: 20px;
   }
-  
-  .comment-form button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #333;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .comment-form button:hover {
-    background-color: #555;
+
+  .recipe-instructions p {
+    padding-left: 30px;
+    font-size: medium;
   }
 
   .overlay {
@@ -221,40 +257,34 @@ header nav a {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-    z-index: 999; /* Ensure the overlay is above other content */
-    display: none; /* Initially hidden */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
   }
   
   .overlay.active {
     display: block;
   }
   
-  /* Disable scrolling when the ov*/
   body.overlay-active {
     overflow: hidden;
   }
   
-  /* Hide scrollbar for browsers that support WebKit */
 ::-webkit-scrollbar {
-    width: 10px; /* Width of the scrollbar */
-    border-radius: 5px;
+    width: 7px;
   }
   
-  /* Style the scroll track */
   ::-webkit-scrollbar-track {
     background: #ffffff;
   }
   
-  /* Style the scroll thumb */
   ::-webkit-scrollbar-thumb {
-    background: #888; /* Color of the scrollbar thumb */
+    background: #888;
     border-radius: 5px;
   }
   
-  /* Style the scroll thumb on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color of the scrollbar thumb on hover */
+    background: #555;
   }  
 
 footer {
