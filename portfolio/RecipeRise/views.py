@@ -70,12 +70,18 @@ def home(request):
 
 
 def recipes(request):
-
     return render(request, 'recipes.html', {'quick': request.session["quick"],
                                          'unknown':request.session["unknown"],
                                          'vegetarian': request.session["vegetarian"]})
 
 def profile(request):
-
     return render(request, 'profile.html')
+
+
+def about(request):
+    return render(request, 'about.html')
+
+
+def contact(request):
+    return render(request, 'contact.html')
 

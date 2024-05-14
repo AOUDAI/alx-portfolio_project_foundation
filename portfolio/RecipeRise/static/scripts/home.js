@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   if (sessionStorage.getItem('recipes') === null) {
     $.ajax({
-      url: "https://api.spoonacular.com/recipes/complexSearch?cuisine=italian&sort=random&addRecipeNutrition=true&number=6&apiKey=5aadec4c06d548298be16668bc8a2cc1",
+      url: "https://api.spoonacular.com/recipes/complexSearch?cuisine=italian&sort=random&addRecipeNutrition=true&addRecipeInstructions=true&number=6&apiKey=5aadec4c06d548298be16668bc8a2cc1",
       method: 'GET',
       dataType: 'json',
       success: function (response) {
@@ -17,7 +17,7 @@ $(document).ready(function() {
 
   if (sessionStorage.getItem('desserts') === null) {
     $.ajax({
-      url: "https://api.spoonacular.com/recipes/complexSearch?type=dessert&sort=random&addRecipeNutrition=true&number=6&apiKey=5aadec4c06d548298be16668bc8a2cc1",
+      url: "https://api.spoonacular.com/recipes/complexSearch?type=dessert&sort=random&addRecipeNutrition=true&addRecipeInstructions=true&number=6&apiKey=5aadec4c06d548298be16668bc8a2cc1",
       method: 'GET',
       dataType: 'json',
       success: function (response) {
@@ -32,7 +32,7 @@ $(document).ready(function() {
 
   if (sessionStorage.getItem('drinks') === null) {
     $.ajax({
-      url: "https://api.spoonacular.com/recipes/complexSearch?type=drink&sort=random&addRecipeNutrition=true&number=6&apiKey=5aadec4c06d548298be16668bc8a2cc1",
+      url: "https://api.spoonacular.com/recipes/complexSearch?type=drink&sort=random&addRecipeNutrition=true&addRecipeInstructions=true&number=6&apiKey=5aadec4c06d548298be16668bc8a2cc1",
       method: 'GET',
       dataType: 'json',
       success: function (response) {
@@ -117,13 +117,16 @@ $(document).ready(function() {
       return obj.name + " " + obj.amount + " " + obj.unit;
     }).join("<br>");
 
+    const instructions = myRecipe.analyzedInstructions[0].steps.map(function (obj) {
+      return obj.number + ": " + obj.step;
+    }).join("<br>");
+
     $('.recipe-details').append(
       `<img src="${myRecipe.image}">
       <h2>${myRecipe.title}</h2>
-      <h5>serves:</h5>
-      <h4>prep time:</h4>
-      <h4>cook time:</h4>
-      <h4>total time:</h4>`
+      <h5>serves:${myRecipe.servings}</h5>
+      <h4>preparation minutes: ${myRecipe.preparationMinutes}</h4>
+      <h4>ready in minutes: ${myRecipe.readyInMinutes}</h4>`
     );
 
     $('.recipe-ingredients').append(
@@ -133,7 +136,7 @@ $(document).ready(function() {
 
     $('.recipe-instructions').append(
       `<h3>Instructions:</h3>
-      <p>${ingredients}</p>`
+      <p>${instructions}</p>`
     )
   });
 
@@ -141,6 +144,8 @@ $(document).ready(function() {
     $('.overlay').removeClass('active');
     $('.recipe-content-board').slideUp('medium');
     $('.recipe-details').empty();
+    $('.recipe-ingredients').empty();
+    $('.recipe-instructions').empty();
     $('body').removeClass('overlay-active');
   });
 

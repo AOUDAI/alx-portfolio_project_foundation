@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecipeRise</title>
+  <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/recipes.css' %}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>RecipeRise</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="{% url 'recipes' %}">Recipes</a></li>
+          <li><a href="{% url 'profile' %}">Profile</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  {% block body %}
+  {% endblock %}
+
+  <section class="featured-recipes">
+    <div class="container">
+      <h2>Featured Recipes</h2>
+      <div class="recipe-grid">
+
+        <div class="recipe-box">
+            <h3>Quick & Easy Recipes</h3>
+            <div class="recipe-items" id="class1">
+            </div>
+        </div>
+
+        <div class="recipe-box">
+          <h3>Desert</h3>
+          <div class="recipe-items" id="class2">
+          </div>
+        </div>
+
+        <div class="recipe-box">
+          <h3>Drinks</h3>
+          <div class="recipe-items" id="class3">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="recipe-content-board">
+    <div class="close-btn">Close</div>
+    <section class="recipe-details">
+    </section>
+    <div class="right-part">
+      <section class="recipe-ingredients">
+      </section>
+      <section class="recipe-instructions">
+      </section>
+    </div>
+  </div>  
+
+  <div class="overlay"></div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 RecipeRise. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="{% static 'scripts/home.js' %}"></script>
+</body>
+</html>
