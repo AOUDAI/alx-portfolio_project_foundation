@@ -28,7 +28,7 @@ Embark on your culinary adventure with RecipeRise by following these simple inst
 git clone https://github.com/C-Aoudair/alx-portfolio_project_foundation
 cd portfolio/RecipeRise
 python manage.py migrate
-python manage.py runserver
+python manage.py runserver```
 
 ## Project Inspiration
 
