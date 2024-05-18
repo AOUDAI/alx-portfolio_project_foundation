@@ -110,8 +110,6 @@ $(document).ready(function() {
         return obj.id == myId;
       });
     }
-
-    console.log(myRecipe);
   
     const ingredients = myRecipe.nutrition.ingredients.map(function (obj) {
       return obj.name + " " + obj.amount + " " + obj.unit;
@@ -152,4 +150,63 @@ $(document).ready(function() {
   $('.comment-form').submit(function(e) {
     e.preventDefault();
   });
+
+  $('.display').on('click', function () {
+    let state = $('.choices').css('display');
+    if (state == 'none') {
+      $('.choices').css('display', 'flex');
+    } else {
+      $('.choices').css('display', 'none');
+    }
+  });
+  
+  let queryParameters = {};
+
+  $('.choice-item').on('change', function () {
+    const category = $(this).attr('name');
+    let value = $(this).closest('label').text().trim();
+    queryParameters[category] = value;
+  
+    $('label').has('input[name="' + category + '"]').removeClass('selected');
+    $(this).closest('label').addClass('selected');
+  });
+
+  $('.search-btn').on('click', function () {
+    if (Object.keys(queryParameters) == 0) {
+      alert('you must choose some categories');
+    } else {
+      $('.choices').css('display', 'none');
+      let parameters = "";
+      for (key in queryParameters) {
+        parameters += `${key}=${queryParameters[key]}&`
+      }
+      const url = `https://api.spoonacular.com/recipes/complexSearch?${parameters}sort=random&addRecipeNutrition=true&addRecipeInstructions=true&number=24&apiKey=5aadec4c06d548298be16668bc8a2cc1`
+      $.ajax({
+        url: url,
+        method: 'GET',
+        dataType: 'json',
+        success: function (response) {
+          for (recipe of response.results) {
+            $('#result').append(
+              `<div class="recipe-card">
+                <div class="recipe-img">
+                  <img src="${recipe.image}" alt="${recipe.title}">
+                  <a href="#" id="${recipe.id}" class="btn">View Recipe</a>
+                </div>
+                <div class="recipe-title">
+                  <h3>${recipe.title}</h3>
+                </div>
+              </div>`
+            );
+          };
+        },
+        error: function (xhr, status, error) {
+          console.log('Error:', status, error);
+          console.log(error);
+        }
+      });
+      queryParameters = {};
+    };
+  });
+
 });

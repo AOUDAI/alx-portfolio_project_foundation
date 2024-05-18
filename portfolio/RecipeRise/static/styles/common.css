@@ -50,7 +50,7 @@ body {
   
   button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #FF0000;
     color: white;
     border: none;
     border-radius: 5px;
@@ -58,7 +58,7 @@ body {
   }
   
   button:hover {
-    background-color: #45a049;
+    opacity: 70%;
   }
   
   footer {

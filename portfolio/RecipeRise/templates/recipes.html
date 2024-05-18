@@ -5,9 +5,36 @@
     <div class="container">
       <h2>Find Your Perfect Recipe</h2>
       <div class="search-container">
-        <input type="text" placeholder="Search for recipes...">
+        <input type="text" class="display" placeholder="Search for recipes...">
         <button class="search-btn">Search</button>
       </div>
     </div>
+
+    <div class="choices">
+
+      <div class="category">
+        <h3 class="type">type</h3>
+        <label class="item"><input type="radio" name="type" class="choice-item" value="1"> main course</label>
+        <label class="item"><input type="radio" name="type" class="choice-item" value="1"> dessert</label>
+        <label class="item"><input type="radio" name="type" class="choice-item" value="1"> breakfast</label>
+        <label class="item"><input type="radio" name="type" class="choice-item" value="1"> snack</label>
+      </div>
+      <div class="category">
+        <h3 class="diet">diet</h3>
+        <label class="item"><input type="radio" name="diet" class="choice-item" value="1"> Vegetarian</label>
+        <label class="item"><input type="radio" name="diet" class="choice-item" value="1"> Gluten Free</label>
+        <label class="item"><input type="radio" name="diet" class="choice-item" value="1"> Paleo</label>
+        <label class="item"><input type="radio" name="diet" class="choice-item" value="1"> Vegan</label>
+      </div>
+      <div class="category">
+        <h3 class="cuisine">cuisine</h3>
+        <label class="item"><input type="radio" name="cuisine" class="choice-item" value="1"> Middle Eastern</label>
+        <label class="item"><input type="radio" name="cuisine" class="choice-item" value="1"> Italian</label>
+        <label class="item"><input type="radio" name="cuisine" class="choice-item" value="1"> Japanese</label>
+        <label class="item"><input type="radio" name="cuisine" class="choice-item" value="1"> American</label>
+      </div>
+    </div>
+
+    <div class="recipe-items" id="result"></div>
   </section>
 {% endblock %}
