@@ -1,7 +1,7 @@
 $(document).ready(function() {
     // Get the user's name
-    const userName = 'John Doe'; // Replace with the user's actual name
-    $('#user-name').text(userName);
+    // const userName = 'John Doe'; // Replace with the user's actual name
+    // $('#user-name').text(userName);
 
     // Add click event listener to each menu item
     $('.menu li').click(function() {
@@ -19,16 +19,6 @@ $(document).ready(function() {
 
         // Display the corresponding content board on top of the menu
         $('#' + contentId).show().addClass('active');
-    });
-
-    // Add click event listener to the "Add" button for all content boards
-    $('.content-board').on('click', '.add-btn', function() {
-        const newElement = $(this).siblings('input[type="text"]').val();
-        if (newElement.trim() !== '') {
-            const listItem = $('<li>').text(newElement).append($('<button class="remove-btn">Remove</button>'));
-            $(this).closest('.content-board').find('ul').append(listItem);
-            $(this).siblings('input[type="text"]').val('');
-        }
     });
 
     // Add click event listener to dynamically added remove buttons for all content boards

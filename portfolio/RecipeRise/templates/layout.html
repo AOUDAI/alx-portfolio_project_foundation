@@ -8,7 +8,9 @@
   <title>RecipeRise</title>
   <link rel="stylesheet" href="{% static 'styles/home.css' %}">
   <link rel="stylesheet" href="{% static 'styles/recipes.css' %}">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript">let csrftoken = '{{ csrf_token }}';</script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+  <script src="{% static 'scripts/home.js' %}" defer></script>
 </head>
 <body>
   <header>
@@ -36,19 +38,19 @@
 
         <div class="recipe-box">
             <h3>Quick & Easy Recipes</h3>
-            <div class="recipe-items" id="class1">
+            <div class="recipe-items" id="recipes">
             </div>
         </div>
 
         <div class="recipe-box">
           <h3>Desert</h3>
-          <div class="recipe-items" id="class2">
+          <div class="recipe-items" id="desserts">
           </div>
         </div>
 
         <div class="recipe-box">
           <h3>Drinks</h3>
-          <div class="recipe-items" id="class3">
+          <div class="recipe-items" id="drinks">
         </div>
 
       </div>
@@ -75,6 +77,5 @@
     </div>
   </footer>
 
-  <script src="{% static 'scripts/home.js' %}"></script>
 </body>
 </html>

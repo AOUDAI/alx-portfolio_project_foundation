@@ -1,91 +1,56 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  
+  function getRecipes (catagory,  number, type = "", diet = "") {
+    route = "https://api.spoonacular.com/recipes/complexSearch";
+    apiKey = "5aadec4c06d548298be16668bc8a2cc1";
+    filters = `type=${type}&diet=${diet}&&number=${number}&apiKey=${apiKey}`;
+    options = "sort=random&addRecipeNutrition=true&addRecipeInstructions=true";
 
-  if (sessionStorage.getItem('recipes') === null) {
     $.ajax({
-      url: "https://api.spoonacular.com/recipes/complexSearch?cuisine=italian&sort=random&addRecipeNutrition=true&addRecipeInstructions=true&number=6&apiKey=5aadec4c06d548298be16668bc8a2cc1",
+      url: `${route}?${filters}&${options}`,
       method: 'GET',
       dataType: 'json',
       success: function (response) {
-        sessionStorage.setItem('recipes', JSON.stringify(response.results));
+        sessionStorage.setItem(catagory, JSON.stringify(response.results));
       },
       error: function (xhr, status, error) {
         console.log('Error:', status, error);
         console.log(error);
       }
     });
+  };
+
+  function fillContent(category) {
+    for (recipe of JSON.parse(sessionStorage.getItem(category))) {
+      $(`#${category}`).append(
+        `<div class="recipe-card">
+          <div class="recipe-img">
+            <img src="${recipe.image}" alt="${recipe.title}">
+            <a href="#" id="${recipe.id}" class="btn">View Recipe</a>
+          </div>
+          <div class="recipe-title">
+            <h3>${recipe.title}</h3>
+          </div>
+        </div>`
+      );
+    };
+  };
+
+  if (sessionStorage.getItem('recipes') === null) {
+    getRecipes("recipes", 6, type='main course');
   }
 
   if (sessionStorage.getItem('desserts') === null) {
-    $.ajax({
-      url: "https://api.spoonacular.com/recipes/complexSearch?type=dessert&sort=random&addRecipeNutrition=true&addRecipeInstructions=true&number=6&apiKey=5aadec4c06d548298be16668bc8a2cc1",
-      method: 'GET',
-      dataType: 'json',
-      success: function (response) {
-        sessionStorage.setItem('desserts', JSON.stringify(response.results));
-      },
-      error: function (xhr, status, error) {
-        console.log('Error:', status, error);
-        console.log(error);
-      }
-    });
+    getRecipes('desserts', 6, type='dessert');
   }
 
   if (sessionStorage.getItem('drinks') === null) {
-    $.ajax({
-      url: "https://api.spoonacular.com/recipes/complexSearch?type=drink&sort=random&addRecipeNutrition=true&addRecipeInstructions=true&number=6&apiKey=5aadec4c06d548298be16668bc8a2cc1",
-      method: 'GET',
-      dataType: 'json',
-      success: function (response) {
-        sessionStorage.setItem('drinks', JSON.stringify(response.results));
-      },
-      error: function (xhr, status, error) {
-        console.log('Error:', status, error);
-        console.log(error);
-      }
-    });
-  }
-
-  for (recipe of JSON.parse(sessionStorage.getItem('recipes'))) {
-    $('#class1').append(
-      `<div class="recipe-card">
-        <div class="recipe-img">
-          <img src="${recipe.image}" alt="${recipe.title}">
-          <a href="#" id="${recipe.id}" class="btn">View Recipe</a>
-        </div>
-        <div class="recipe-title">
-          <h3>${recipe.title}</h3>
-        </div>
-      </div>`
-    );
+    getRecipes('drinks', 6, type='drink');
   };
 
-  for (recipe of JSON.parse(sessionStorage.getItem('desserts'))) {
-    $('#class2').append(
-      `<div class="recipe-card">
-        <div class="recipe-img">
-          <img src="${recipe.image}" alt="${recipe.title}">
-          <a href="#" id="${recipe.id}" class="btn">View Recipe</a>
-        </div>
-        <div class="recipe-title">
-          <h3>${recipe.title}</h3>
-        </div>
-      </div>`
-    );
-  };
-
-  for (recipe of JSON.parse(sessionStorage.getItem('drinks'))) {
-    $('#class3').append(
-      `<div class="recipe-card">
-        <div class="recipe-img">
-          <img src="${recipe.image}" alt="${recipe.title}">
-          <a href="#" id="${recipe.id}" class="btn">View Recipe</a>
-        </div>
-        <div class="recipe-title">
-          <h3>${recipe.title}</h3>
-        </div>
-      </div>`
-    );
-  };
+  fillContent('recipes');
+  fillContent('desserts');
+  fillContent('drinks');
 
   $('.recipe-card .btn').click(function(e) {
     e.preventDefault();
@@ -94,22 +59,11 @@ $(document).ready(function() {
     $('.recipe-content-board').css('display', "flex");
     $('body').addClass('overlay-active');
 
+    const recepeCategory = (($(this).parent()).parent()).parent().prop('id');
     const myId = $(this).prop('id');
-    let myRecipe = JSON.parse(sessionStorage.getItem('recipes')).find(function (obj) {
+    const myRecipe = JSON.parse(sessionStorage.getItem(recepeCategory)).find(function (obj) {
       return obj.id == myId;
     });
-
-    if (myRecipe === undefined) {
-      myRecipe = JSON.parse(sessionStorage.getItem('desserts')).find(function (obj) {
-        return obj.id == myId;
-      });
-    }
-
-    if (myRecipe === undefined) {
-      myRecipe = JSON.parse(sessionStorage.getItem('drinks')).find(function (obj) {
-        return obj.id == myId;
-      });
-    }
   
     const ingredients = myRecipe.nutrition.ingredients.map(function (obj) {
       return obj.name + " " + obj.amount + " " + obj.unit;
@@ -124,31 +78,50 @@ $(document).ready(function() {
       <h2>${myRecipe.title}</h2>
       <h5>serves:${myRecipe.servings}</h5>
       <h4>preparation minutes: ${myRecipe.preparationMinutes}</h4>
-      <h4>ready in minutes: ${myRecipe.readyInMinutes}</h4>`
+      <h4>ready in minutes: ${myRecipe.readyInMinutes}</h4>
+      <h6 class="add-item">add to my list</h6>`
     );
 
     $('.recipe-ingredients').append(
       `<h3>Ingredients:</h3>
       <p>${ingredients}</p>`
-    )
+    );
 
     $('.recipe-instructions').append(
       `<h3>Instructions:</h3>
       <p>${instructions}</p>`
-    )
-  });
+    );
 
-  $('.close-btn').click(function() {
-    $('.overlay').removeClass('active');
-    $('.recipe-content-board').slideUp('medium');
-    $('.recipe-details').empty();
-    $('.recipe-ingredients').empty();
-    $('.recipe-instructions').empty();
-    $('body').removeClass('overlay-active');
-  });
+    $('.recipe-details').on('click', '.add-item', function () {
+      $.ajax({
+        url: 'http://localhost:8000/RecipeRise/save/',
+        method: 'POST',
+        data: {
+          recipeTitle: myRecipe.title,
+          recipeId: myRecipe.id
+        },
+        headers: {
+          'X-CSRFToken': csrftoken
+        },
+        success: function () {
+          alert('Your recipe has been saved');
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+    });
+  
+    $('.close-btn').click(function() {
+      $('.overlay').removeClass('active');
+      $('.recipe-content-board').slideUp('medium');
+      $('.recipe-details').empty();
+      $('.recipe-ingredients').empty();
+      $('.recipe-instructions').empty();
+      $('.recipe-details').off('click');
+      $('body').removeClass('overlay-active');
+    });
 
-  $('.comment-form').submit(function(e) {
-    e.preventDefault();
   });
 
   $('.display').on('click', function () {

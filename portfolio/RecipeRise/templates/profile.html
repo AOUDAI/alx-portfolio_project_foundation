@@ -12,7 +12,7 @@
 <body>
     <header>
         <h1>User Profile</h1>
-        <p>Welcome, <span id="user-name">User</span>!</p>
+        <p>Welcome, <span id="user-name">{{ username }}</span>!</p>
     </header>
     <main>
         <div class="menu">
@@ -20,7 +20,6 @@
                 <li id="saved-recipes-btn">Saved Recipes</li>
                 <li id="diet-plan-btn">Diet Plan</li>
                 <li id="Ingredient-list-btn">Ingredient List</li>
-                <!-- Add more menu items here -->
             </ul>
         </div>
         <div class="content">
@@ -28,38 +27,28 @@
                 <h2>Saved Recipes</h2>
                 <ul id="saved-recipes-list">
                     <!-- Content related to saved recipes will be dynamically added here -->
+                    {% for recipe in recipes %}
+                    <li>{{ recipe.recipe_name }}</li>
+                    {% endfor %}
                 </ul>
                 <div class="controls">
-                    <input type="text" placeholder="Add a new recipe" class="add-input">
-                    <button class="add-btn">Add</button>
-                </div>
             </section>
             <section id="diet-plan-content" class="content-board">
                 <h2>My Diet</h2>
                 <ul id="diet-plan-list">
                     <!-- Content related to diet plan will be dynamically added here -->
                 </ul>
-                <div class="controls">
-                    <input type="text" placeholder="Add a new item" class="add-input">
-                    <button class="add-btn">Add</button>
-                </div>
             </section>
             <section id="Ingredient-list-content" class="content-board">
                 <h2>Ingredient List</h2>
                 <ul id="Ingredient-list">
                     <!-- Content related to Ingredient list will be dynamically added here -->
                 </ul>
-                <div class="controls">
-                    <input type="text" placeholder="Add a new item" class="add-input">
-                    <button class="add-btn">Add</button>
-                    <button class="save-btn">Save</button>
-                </div>
             </section>
-            <!-- Add more content boards here -->
         </div>
     </main>
     <footer>
-        <p>&copy; 2024 Your Recipes Website</p>
+        <p>&copy; 2024 RecipeRise</p>
     </footer>
 
     <script src="{% static 'scripts/profile.js' %}"></script>

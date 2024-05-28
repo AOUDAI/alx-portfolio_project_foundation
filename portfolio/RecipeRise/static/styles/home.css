@@ -216,6 +216,21 @@ header nav a {
     color: #f5f3f3;
   }
 
+  .add-item {
+    width: 40%;
+    margin: 20px auto;
+    text-align: center;
+    padding: 10px;
+    background-color: #888;
+    border-radius: 5px;
+    font-size: large;
+    cursor: pointer;
+  }
+
+  .add-item:hover {
+    background-color: #aaa;
+  }
+
   .right-part {
     width: 65%;
     height: 100%;

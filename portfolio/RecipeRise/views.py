@@ -1,14 +1,16 @@
 from .forms import RegistrationForm
 from .functions import getRecipes
+from .models import Recipes
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import logout, login, authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-import requests
+import json
 
 
 
@@ -52,30 +54,32 @@ def sign_in(request):
 
 
 def home(request):
-    if "quick" not in request.session:
-        quick = getRecipes('maxReady', '5', 12)
-        request.session["quick"] = quick
-
-    if "unknown" not in request.session:
-        unknown = getRecipes('diet', 'Paleo', 12)
-        request.session["unknown"] = unknown
-
-    if 'vegetarian' not in request.session:
-        vegetarian = getRecipes('diet', 'Vegetarian', 12)
-        request.session["vegetarian"] = vegetarian
-
-    return render(request, 'home.html', {'quick': request.session["quick"],
-                                         'unknown':request.session["unknown"],
-                                         'vegetarian': request.session["vegetarian"]})
+    return render(request, 'home.html')
 
 
 def recipes(request):
-    return render(request, 'recipes.html', {'quick': request.session["quick"],
-                                         'unknown':request.session["unknown"],
-                                         'vegetarian': request.session["vegetarian"]})
+    return render(request, 'recipes.html')
 
+
+@login_required
 def profile(request):
-    return render(request, 'profile.html')
+    user = request.user
+    username = user.username
+    recipes = Recipes.objects.all().filter(user_id=user.id)
+    return render(request, 'profile.html', {'username': username, 'recipes': recipes})
+
+
+@login_required
+def saveRecipe(request):
+    if request.method == 'POST':
+        print('hello world')
+        userId = request.user.id
+        recipeId = request.POST['recipeId']
+        recipeTitle = request.POST['recipeTitle']
+        user = User.objects.get(pk=userId)
+        Recipes.objects.create(recipe_name=recipeTitle, recipe_id=recipeId, user=user)
+    return JsonResponse({'message': 'the operation was successful'}, status=200)
+
 
 
 def about(request):
